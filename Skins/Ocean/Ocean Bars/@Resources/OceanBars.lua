@@ -1,4 +1,4 @@
--- OceanBars v1.2
+-- OceanBars v1.3
 -- LICENSE: Creative Commons Attribution-Non-Commercial-Share Alike 3.0
 
 local Measure,MeasureBuffer,cos,PI={},{},math.cos,math.pi
@@ -23,34 +23,35 @@ function Update()
 	local y0,y1,y2,y3,LocalMu=MeasureBuffer[1],MeasureBuffer[1],MeasureBuffer[2],MeasureBuffer[4],0
 	for j=1,HalfWidth*2 do
 		LocalMu=LocalMu+Mu*0.5
-		SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 	end
 	
 	for i=2,Limit-3 do
-		SKIN:Bang("!SetOption","MeasureIter","Formula",MeasureBuffer[i])
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..MeasureBuffer[i])
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 		
 		local y0,y1,y2,y3,LocalMu=MeasureBuffer[i-1],MeasureBuffer[i],MeasureBuffer[i+1],MeasureBuffer[i+2],0
 		for j=1,HalfWidth do
 			LocalMu=LocalMu+Mu
-			SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-			SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+			SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+			SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 		end
+		SKIN:Bang("[!CommandMeasure ScriptCallback x=0][!UpdateMeasure ScriptCallback]")
 		for j=1,BarGap do
-			SKIN:Bang("[!SetOption MeasureIter Formula 0][!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+			SKIN:Bang("[!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 		end
 		for j=1,HalfWidth do
 			LocalMu=LocalMu+Mu
-			SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-			SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+			SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+			SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 		end
 	end
 	
 	y0,y1,y2,y3,LocalMu=MeasureBuffer[Limit-4],MeasureBuffer[Limit-2],MeasureBuffer[Limit-1],MeasureBuffer[Limit-1],0
 	for j=1,HalfWidth*2 do
 		LocalMu=LocalMu+Mu*0.5
-		SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterHistogram][!UpdateMeter MeterLine]")
 	end
 end

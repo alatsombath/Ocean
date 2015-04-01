@@ -1,4 +1,4 @@
--- Wave v1.2
+-- Wave v1.3
 -- LICENSE: Creative Commons Attribution-Non-Commercial-Share Alike 3.0
 
 local Measure,MeasureBuffer,cos,PI={},{},math.cos,math.pi
@@ -23,26 +23,26 @@ function Update()
 	local y0,y1,y2,y3,LocalMu=MeasureBuffer[1],MeasureBuffer[1],MeasureBuffer[2],MeasureBuffer[4],0
 	for j=1,InterWidth*2 do
 		LocalMu=LocalMu+Mu*0.5
-		SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterLine]")
 	end
 	
 	for i=2,Limit-3 do
-		SKIN:Bang("!SetOption","MeasureIter","Formula",MeasureBuffer[i])
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..MeasureBuffer[i])
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterLine]")
 		
 		local y0,y1,y2,y3,LocalMu=MeasureBuffer[i-1],MeasureBuffer[i],MeasureBuffer[i+1],MeasureBuffer[i+2],0
 		for j=1,InterWidth do
 			LocalMu=LocalMu+Mu
-			SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-			SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterLine]")
+			SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterLine]")
 		end
 	end
 	
 	y0,y1,y2,y3,LocalMu=MeasureBuffer[Limit-4],MeasureBuffer[Limit-2],MeasureBuffer[Limit-1],MeasureBuffer[Limit-1],0
 	for j=1,InterWidth*2 do
 		LocalMu=LocalMu+Mu*0.5
-		SKIN:Bang("!SetOption","MeasureIter","Formula",CubicInterpolate(y0,y1,y2,y3,LocalMu))
-		SKIN:Bang("[!UpdateMeasure MeasureIter][!UpdateMeter MeterLine]")
+		SKIN:Bang("!CommandMeasure","ScriptCallback","x="..CubicInterpolate(y0,y1,y2,y3,LocalMu))
+		SKIN:Bang("[!UpdateMeasure ScriptCallback][!UpdateMeter MeterLine]")
 	end
 end
