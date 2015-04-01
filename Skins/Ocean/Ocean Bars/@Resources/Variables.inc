@@ -12,7 +12,7 @@ MeasureName=MeasureAudioRepeat
 Bands=96
 Sensitivity=42
 
-BarWidth=10
+BarWidth=8
 BarGap=6
 
 X=0

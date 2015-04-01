@@ -1,7 +1,7 @@
 [Variables]
 FFTAttack=350
 FFTDecay=350
-FFTSize=4096
+FFTSize=2048
 FreqMin=40
 FreqMax=16000
 ; Audio settings
@@ -9,7 +9,7 @@ FreqMax=16000
 
 MeasureName=MeasureAudioRepeat
 
-Bands=48
+Bands=96
 Sensitivity=42
 
 X=0
