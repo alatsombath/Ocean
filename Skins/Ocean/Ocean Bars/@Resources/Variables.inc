@@ -12,11 +12,14 @@ MeasureName=MeasureAudioRepeat
 Bands=96
 Sensitivity=42
 
-BarWidth=8
-BarGap=4
+BarWidth=10
+BarGap=6
 
 X=0
 Y=0
 Height=(#WORKAREAHEIGHT#/4)
+
+LineWidth=4
+GraphOrientation=Vertical
 
 Color=161,186,220,255

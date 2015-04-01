@@ -17,4 +17,7 @@ Y=0
 Width=(#WORKAREAWIDTH#/2)
 Height=(#WORKAREAHEIGHT#/4)
 
+LineWidth=4
+GraphOrientation=Vertical
+
 Color=161,186,220,255
