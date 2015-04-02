@@ -44,10 +44,3 @@ FreqMax=16000
 Port=Output
 ; Additional audio settings
 ; http://docs.rainmeter.net/manual-beta/plugins/audiolevel#FFTOptions
-FFTAttack=350
-FFTDecay=350
-FFTSize=2048
-FreqMin=40
-FreqMax=16000
-; Audio settings
-; http://docs.rainmeter.net/manual-beta/plugins/audiolevel#FFTOptions
